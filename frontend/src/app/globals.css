@@ -1,0 +1,39 @@
+@import "tailwindcss";
+@config "../../tailwind.config.ts";
+
+@theme {
+  --color-primary: #f97316;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #ffdbca;
+  --color-secondary: #2d3133;
+  --color-on-secondary: #ffffff;
+  --color-tertiary: #006398;
+  --color-tertiary-container: #00a2f4;
+  --color-surface: #f7f9fb;
+  --color-on-surface: #191c1e;
+  --color-on-surface-variant: #44474e;
+  --color-surface-container: #eceef0;
+  --color-surface-container-low: #f2f4f6;
+  --color-surface-container-lowest: #ffffff;
+  --color-secondary-fixed-dim: #bec6e0;
+}
+
+:root {
+  --background: #f7f9fb;
+  --foreground: #191c1e;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.material-symbols-outlined.fill-1 {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+

@@ -1,0 +1,104 @@
+'use client';
+
+import React from 'react';
+
+export default function Footer() {
+  return (
+    <footer id="safety-standards" className="bg-slate-950 text-white py-16 px-6 border-t border-slate-800">
+      <div className="max-w-7xl mx-auto space-y-12">
+        {/* Main Footer Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
+          {/* Brand Info */}
+          <div className="space-y-4 md:col-span-1">
+            <div className="flex items-center gap-3">
+              <div className="h-10 w-10 overflow-hidden rounded-lg bg-white p-0.5 flex items-center justify-center shrink-0 shadow-sm">
+                <img
+                  src="/logo.png"
+                  alt="Smart Interlock Logo"
+                  className="h-12 w-12 object-cover object-top"
+                />
+              </div>
+              <span className="font-extrabold text-xl tracking-tight text-white">
+                SmartInterlock
+              </span>
+            </div>
+            <p className="text-xs text-slate-400 leading-relaxed max-w-sm">
+              Industrial-grade safety and fleet logistics solutions engineered for high-pressure environments.
+            </p>
+          </div>
+
+          {/* Quick Links */}
+          <div className="space-y-3">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-200">
+              QUICK LINKS
+            </h4>
+            <ul className="space-y-2 text-xs text-slate-400">
+              <li>
+                <a href="#features" className="hover:text-white transition-colors">
+                  Features
+                </a>
+              </li>
+              <li>
+                <a href="#solutions" className="hover:text-white transition-colors">
+                  Solutions
+                </a>
+              </li>
+              <li>
+                <a href="#safety-standards" className="hover:text-white transition-colors">
+                  Safety Compliance
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div className="space-y-3">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-200">
+              CONTACT
+            </h4>
+            <div className="space-y-2 text-xs text-slate-400 leading-relaxed">
+              <p>1230 Safety Way</p>
+              <p>Logistics Hub, TX 75001</p>
+              <p className="text-slate-300 font-mono">sales@smartinterlock.com</p>
+            </div>
+          </div>
+
+          {/* Follow Us */}
+          <div className="space-y-3">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-200">
+              FOLLOW US
+            </h4>
+            <div className="flex items-center gap-3">
+              <a
+                href="#"
+                className="w-9 h-9 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-700 transition-all"
+                aria-label="Share"
+              >
+                <span className="material-symbols-outlined text-[18px]">share</span>
+              </a>
+              <a
+                href="#"
+                className="w-9 h-9 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-700 transition-all"
+                aria-label="Website"
+              >
+                <span className="material-symbols-outlined text-[18px]">language</span>
+              </a>
+              <a
+                href="#"
+                className="w-9 h-9 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-700 transition-all"
+                aria-label="Network"
+              >
+                <span className="material-symbols-outlined text-[18px]">hub</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Rights */}
+        <div className="border-t border-slate-900 pt-8 text-center text-xs text-slate-500 font-medium">
+          © 2026 Smart Interlock Systems. All rights reserved. Precision. Safety. Reliability.
+        </div>
+      </div>
+    </footer>
+  );
+}
