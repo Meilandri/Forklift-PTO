@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { LanguageProvider } from "@/context/LanguageContext";
 
 export const metadata: Metadata = {
   title: "SmartInterlock - Forklift PTO Safety System",
@@ -24,8 +25,10 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased bg-surface font-sans text-on-surface">
-        {children}
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );
-}
+}

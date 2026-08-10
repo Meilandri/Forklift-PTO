@@ -1,38 +1,22 @@
 'use client';
 
 import React from 'react';
+import { useLanguage } from '@/context/LanguageContext';
+import { translations } from '@/translations';
 
 export default function ProcessSection() {
-  const steps = [
-    {
-      num: 1,
-      title: 'Login & Otentikasi',
-      description:
-        'Operator memindai ID card pada perangkat interlock yang terpasang di forklift. Sistem memverifikasi lisensi dan otorisasi.',
-    },
-    {
-      num: 2,
-      title: 'Inspeksi Digital (PTO)',
-      description:
-        'Setelah otentikasi berhasil, layar meminta operator menyelesaikan ceklis inspeksi harian (rem, hidrolik, dll) secara langsung.',
-    },
-    {
-      num: 3,
-      title: 'Operasi Diizinkan',
-      description:
-        'Jika PTO lulus, interlock membuka kunci pengapian. Data dicatat secara real-time ke dasbor manajemen K3 pusat.',
-    },
-  ];
+  const { language } = useLanguage();
+  const t = translations[language].process;
 
   return (
     <section id="solutions" className="py-24 px-6 bg-slate-50 border-t border-slate-200 scroll-mt-24">
       <div className="max-w-7xl mx-auto">
         {/* Solution Section Layout Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          {/* Left Column: Title & Stepper Timeline (6 columns) */}
+          {/* Left Column: Title & Stepper Timeline */}
           <div className="lg:col-span-6 space-y-6">
             <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight mb-8">
-              Proses Operasi yang Aman &amp;<br />Terstruktur
+              {t.sectionTitle}
             </h2>
 
             {/* Stepper Container */}
@@ -40,11 +24,11 @@ export default function ProcessSection() {
               {/* Connecting Vertical Timeline Line */}
               <div className="absolute left-[13px] top-4 bottom-8 w-[2px] bg-slate-300 pointer-events-none"></div>
 
-              {steps.map((step) => (
-                <div key={step.num} className="relative flex items-start gap-4 z-10 group">
+              {t.steps.map((step, idx) => (
+                <div key={idx} className="relative flex items-start gap-4 z-10 group">
                   {/* Step Circular Badge */}
                   <div className="w-7 h-7 rounded-full bg-slate-200 text-slate-700 font-extrabold text-xs flex items-center justify-center shrink-0 border-2 border-white shadow-sm mt-5">
-                    {step.num}
+                    {idx + 1}
                   </div>
 
                   {/* Step Card */}
@@ -61,7 +45,7 @@ export default function ProcessSection() {
             </div>
           </div>
 
-          {/* Right Column: Visual Showcase Grid (6 columns) */}
+          {/* Right Column: Visual Showcase Grid */}
           <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
             {/* Middle Tall Card: RFID Authentication Image */}
             <div className="relative h-[440px] rounded-2xl overflow-hidden shadow-sm border border-slate-200/90 bg-slate-900 group">
@@ -77,7 +61,7 @@ export default function ProcessSection() {
               </div>
             </div>
 
-            {/* Right Stacked Cards: Compliance Stats & Digital Checklist Image */}
+            {/* Right Stacked Cards */}
             <div className="flex flex-col gap-4 h-[440px]">
               {/* Top Compliance Stats Card */}
               <div className="h-[210px] bg-[#eceef0] rounded-2xl p-6 flex flex-col items-center justify-center text-center shadow-xs border border-slate-200/80">
@@ -88,7 +72,7 @@ export default function ProcessSection() {
                   100%
                 </span>
                 <span className="text-xs text-slate-600 font-semibold mt-1">
-                  Kepatuhan PTO
+                  {t.complianceLabel}
                 </span>
               </div>
 

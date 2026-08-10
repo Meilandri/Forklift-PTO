@@ -1,8 +1,13 @@
 'use client';
 
 import React from 'react';
+import { useLanguage } from '@/context/LanguageContext';
+import { translations } from '@/translations';
 
 export default function Footer() {
+  const { language } = useLanguage();
+  const t = translations[language].footer;
+
   return (
     <footer id="safety-standards" className="bg-slate-950 text-white py-16 px-6 border-t border-slate-800">
       <div className="max-w-7xl mx-auto space-y-12">
@@ -23,29 +28,29 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-xs text-slate-400 leading-relaxed max-w-sm">
-              Industrial-grade safety and fleet logistics solutions engineered for high-pressure environments.
+              {t.brandDesc}
             </p>
           </div>
 
           {/* Quick Links */}
           <div className="space-y-3">
             <h4 className="text-xs font-bold uppercase tracking-wider text-slate-200">
-              QUICK LINKS
+              {t.quickLinks}
             </h4>
             <ul className="space-y-2 text-xs text-slate-400">
               <li>
                 <a href="#features" className="hover:text-white transition-colors">
-                  Features
+                  {t.links.features}
                 </a>
               </li>
               <li>
                 <a href="#solutions" className="hover:text-white transition-colors">
-                  Solutions
+                  {t.links.solutions}
                 </a>
               </li>
               <li>
-                <a href="#safety-standards" className="hover:text-white transition-colors">
-                  Safety Compliance
+                <a href="/about-us" className="hover:text-white transition-colors">
+                  {t.links.aboutUs}
                 </a>
               </li>
             </ul>
@@ -54,11 +59,11 @@ export default function Footer() {
           {/* Contact */}
           <div className="space-y-3">
             <h4 className="text-xs font-bold uppercase tracking-wider text-slate-200">
-              CONTACT
+              {t.contact}
             </h4>
             <div className="space-y-2 text-xs text-slate-400 leading-relaxed">
-              <p>1230 Safety Way</p>
-              <p>Logistics Hub, TX 75001</p>
+              <p>bluru kidul</p>
+              <p>Sidoarjo Kota</p>
               <p className="text-slate-300 font-mono">sales@smartinterlock.com</p>
             </div>
           </div>
@@ -66,7 +71,7 @@ export default function Footer() {
           {/* Follow Us */}
           <div className="space-y-3">
             <h4 className="text-xs font-bold uppercase tracking-wider text-slate-200">
-              FOLLOW US
+              {t.followUs}
             </h4>
             <div className="flex items-center gap-3">
               <a
@@ -96,7 +101,7 @@ export default function Footer() {
 
         {/* Bottom Rights */}
         <div className="border-t border-slate-900 pt-8 text-center text-xs text-slate-500 font-medium">
-          © 2026 Smart Interlock Systems. All rights reserved. Precision. Safety. Reliability.
+          {t.copyright}
         </div>
       </div>
     </footer>

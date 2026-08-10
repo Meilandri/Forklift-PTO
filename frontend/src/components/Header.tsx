@@ -1,21 +1,25 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { useLanguage } from '@/context/LanguageContext';
+import { translations } from '@/translations';
 
 export default function Header() {
+  const { language, setLanguage } = useLanguage();
+  const t = translations[language].nav;
   const [activeNav, setActiveNav] = useState<string>('home');
 
   const navItems = [
-    { id: 'home', label: 'HOME', href: '#' },
-    { id: 'features', label: 'FEATURES', href: '#features' },
-    { id: 'solutions', label: 'SOLUTIONS', href: '#solutions' },
-    { id: 'safety-standards', label: 'SAFETY STANDARDS', href: '#safety-standards' },
+    { id: 'home', label: t.home, href: '#' },
+    { id: 'features', label: t.features, href: '#features' },
+    { id: 'solutions', label: t.solutions, href: '#solutions' },
+    { id: 'about-us', label: t.aboutUs, href: '/about-us' },
   ];
 
-  // Optional: Auto-detect active section on scroll
+  // Auto-detect active section on scroll
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['features', 'solutions', 'safety-standards'];
+      const sections = ['features', 'solutions'];
       const scrollPosition = window.scrollY + 200;
 
       if (window.scrollY < 150) {
@@ -41,6 +45,11 @@ export default function Header() {
   }, []);
 
   const handleNavClick = (id: string, href: string, e: React.MouseEvent) => {
+    if (href.startsWith('/')) {
+      // Full page navigation — let browser handle it
+      setActiveNav(id);
+      return;
+    }
     setActiveNav(id);
     if (href === '#') {
       e.preventDefault();
@@ -52,10 +61,7 @@ export default function Header() {
         const headerOffset = 90;
         const elementPosition = targetEl.getBoundingClientRect().top;
         const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth',
-        });
+        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
       }
     }
   };
@@ -81,7 +87,7 @@ export default function Header() {
           </span>
         </a>
 
-        {/* Navigation Menu with Active State Color Change */}
+        {/* Navigation Menu */}
         <nav className="hidden lg:flex items-center gap-2 text-xs uppercase tracking-wider font-bold">
           {navItems.map((item) => {
             const isActive = activeNav === item.id;
@@ -102,13 +108,38 @@ export default function Header() {
           })}
         </nav>
 
-        {/* Right CTA / Action */}
-        <div className="flex items-center gap-4">
+        {/* Right: Language Toggle + CTA */}
+        <div className="flex items-center gap-3">
+          {/* Language Toggle */}
+          <div className="flex items-center gap-1 rounded-lg border border-slate-200 overflow-hidden text-xs font-bold">
+            <button
+              onClick={() => setLanguage('id')}
+              className={`px-3 py-1.5 transition-all ${
+                language === 'id'
+                  ? 'bg-primary text-white'
+                  : 'text-slate-500 hover:bg-slate-100'
+              }`}
+            >
+              ID
+            </button>
+            <button
+              onClick={() => setLanguage('en')}
+              className={`px-3 py-1.5 transition-all ${
+                language === 'en'
+                  ? 'bg-primary text-white'
+                  : 'text-slate-500 hover:bg-slate-100'
+              }`}
+            >
+              EN
+            </button>
+          </div>
+
+          {/* GET QUOTE CTA */}
           <a
             href="#quote"
             className="hidden md:inline-flex items-center justify-center bg-primary hover:bg-orange-600 text-white font-bold text-xs uppercase tracking-wider px-5 py-2.5 rounded-lg shadow-sm transition-all"
           >
-            GET A QUOTE
+            {t.getQuote}
           </a>
           <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white shadow-sm">
             <span className="material-symbols-outlined text-[18px]">person</span>

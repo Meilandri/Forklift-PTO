@@ -1,18 +1,23 @@
 'use client';
 
 import React from 'react';
+import { useLanguage } from '@/context/LanguageContext';
+import { translations } from '@/translations';
 
 export default function Features() {
+  const { language } = useLanguage();
+  const t = translations[language].features;
+
   return (
     <section id="features" className="py-24 px-6 bg-slate-50 border-t border-slate-200 scroll-mt-24">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
           <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">
-            Infrastruktur Keselamatan Komprehensif
+            {t.sectionTitle}
           </h2>
           <p className="text-slate-600 text-base leading-relaxed">
-            Sistem kami merombak manajemen keselamatan forklift tradisional menjadi alur kerja digital yang proaktif, aman, dan dapat dilacak sepenuhnya.
+            {t.sectionDesc}
           </p>
         </div>
 
@@ -24,10 +29,10 @@ export default function Features() {
               <span className="material-symbols-outlined text-[28px]">lock_person</span>
             </div>
             <h3 className="text-xl font-bold text-slate-900 mb-3">
-              Smart Interlock System
+              {t.card1Title}
             </h3>
             <p className="text-slate-600 text-sm leading-relaxed">
-              Mencegah penggunaan forklift oleh operator yang tidak berwenang. Mesin hanya dapat diaktifkan melalui otentikasi RFID atau biometrik yang terverifikasi di sistem.
+              {t.card1Desc}
             </p>
           </div>
 
@@ -37,10 +42,10 @@ export default function Features() {
               <span className="material-symbols-outlined text-[28px]">checklist_rtl</span>
             </div>
             <h3 className="text-xl font-bold text-slate-900 mb-3">
-              Daily Digital PTO
+              {t.card2Title}
             </h3>
             <p className="text-slate-600 text-sm leading-relaxed">
-              Daftar periksa operasional harian (Pre-Task Observation) yang didigitalisasi. Wajib diisi sebelum mesin Interlock melepaskan kunci pengapian.
+              {t.card2Desc}
             </p>
           </div>
 
@@ -50,10 +55,10 @@ export default function Features() {
               <span className="material-symbols-outlined text-[28px]">verified_user</span>
             </div>
             <h3 className="text-xl font-bold text-slate-900 mb-3">
-              K3 Compliance
+              {t.card3Title}
             </h3>
             <p className="text-slate-600 text-sm leading-relaxed">
-              Otomatisasi pelaporan keselamatan K3. Dasbor analitik melacak insiden, near-misses, dan metrik kepatuhan untuk audit yang lebih mudah.
+              {t.card3Desc}
             </p>
           </div>
         </div>
