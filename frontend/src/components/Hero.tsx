@@ -4,6 +4,9 @@ import React from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { translations } from '@/translations';
 
+// Menentukan basePath dinamis agar asset gambar dikenali oleh GitHub Pages
+const basePath = process.env.NODE_ENV === 'production' ? '/Forklift-PTO' : '';
+
 export default function Hero() {
   const { language } = useLanguage();
   const t = translations[language].hero;
@@ -12,7 +15,7 @@ export default function Hero() {
     <section className="relative min-h-[85vh] flex items-center justify-center bg-white py-16 px-6">
       <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         {/* Left Column: Headline & CTA */}
-        <div className="space-y-6 pr-5 ml-auto">
+        <div className="space-y-6 lg:pr-5">
           <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 leading-[1.15]">
             {t.headline}
           </h1>
@@ -31,8 +34,8 @@ export default function Hero() {
             </button>
 
             {/* Secondary CTA */}
-            <a href="https://youtu.be/dQw4w9WgXcQ?si=kSgHTqgslQg1Td_Y">
-              <button className="bg-slate-100 hover:bg-slate-200 border border-slate-300 text-slate-800 font-bold px-6 py-3.5 rounded transition-all flex items-center justify-center gap-2">
+            <a href="https://youtu.be/dQw4w9WgXcQ?si=kSgHTqgslQg1Td_Y" target="_blank" rel="noopener noreferrer">
+              <button className="bg-slate-100 hover:bg-slate-200 border border-slate-300 text-slate-800 font-bold px-6 py-3.5 rounded transition-all flex items-center justify-center gap-2 w-full sm:w-auto">
                 <span>{t.ctaSecondary}</span>
                 <span className="material-symbols-outlined text-[20px] text-slate-700">
                   play_circle
@@ -57,11 +60,14 @@ export default function Hero() {
         </div>
 
         {/* Right Column: Image */}
-        <div className="hidden lg:block relative h-[480px] w-[480px] rounded-2xl overflow-hidden shadow-2xl flex flex-col justify-between ml-[100px]">
-          <img src="heroimg.png" alt="Dashboard mockup" className="w-full h-full object-cover" />
+        <div className="hidden lg:block relative h-[480px] w-full max-w-[480px] mx-auto rounded-2xl overflow-hidden shadow-2xl">
+          <img
+            src={`${basePath}/heroimg.png`}
+            alt="Dashboard mockup"
+            className="w-full h-full object-cover"
+          />
         </div>
       </div>
     </section>
   );
 }
-
