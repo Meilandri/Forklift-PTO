@@ -7,6 +7,9 @@ const nextConfig: NextConfig = {
   output: "export",
   // Menambahkan prefix subfolder khusus saat di-build oleh GitHub Actions
   basePath: isGithubActions ? "/Forklift-PTO" : "",
+  env: {
+    NEXT_PUBLIC_BASE_PATH: isGithubActions ? "/Forklift-PTO" : "",
+  },
   images: {
     unoptimized: true,
   },

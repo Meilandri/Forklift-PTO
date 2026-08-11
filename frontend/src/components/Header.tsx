@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Link from "next/link";
 import Image from 'next/image'; // 1. Tambahkan import Image
 import { useLanguage } from '@/context/LanguageContext';
 import { translations } from '@/translations';
@@ -17,7 +18,7 @@ export default function Header() {
     { id: 'home', label: t.home, href: '#' },
     { id: 'features', label: t.features, href: '#features' },
     { id: 'solutions', label: t.solutions, href: '#solutions' },
-    { id: 'about-us', label: t.aboutUs, href: `${basePath}/about-us` },
+    { id: "about-us", label: t.aboutUs, href: `${basePath}/about-us` },
   ];
 
   // Auto-detect active section on scroll
@@ -74,12 +75,12 @@ export default function Header() {
     <header className="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200">
       <div className="h-16 max-w-7xl mx-auto px-6 flex items-center justify-between">
         {/* Brand Logo */}
-        <a
-          href="#"
-          onClick={(e) => handleNavClick('home', '#', e)}
-          className="flex items-center gap-3 group"
-        >
-          <div className="h-10 w-10 overflow-hidden rounded-lg bg-white p-0.5 border border-slate-200 flex items-center justify-center shrink-0 shadow-sm">
+        <Link href="#" legacyBehavior>
+          <a
+            onClick={(e) => handleNavClick('home', '#', e)}
+            className="flex items-center gap-3 group"
+          >
+            <div className="h-10 w-10 overflow-hidden rounded-lg bg-white p-0.5 border border-slate-200 flex items-center justify-center shrink-0 shadow-sm">
             {/* 3. Ubah tag img menjadi Image dengan penambahan basePath */}
             <Image
               src={`${basePath}/logo.png`}
@@ -93,23 +94,24 @@ export default function Header() {
             SmartInterlock
           </span>
         </a>
+</Link>
 
         {/* Navigation Menu */}
         <nav className="hidden lg:flex items-center gap-2 text-xs uppercase tracking-wider font-bold">
           {navItems.map((item) => {
             const isActive = activeNav === item.id;
             return (
-              <a
-                key={item.id}
-                href={item.href}
-                onClick={(e) => handleNavClick(item.id, item.href, e)}
-                className={`px-4 py-2 rounded-lg transition-all duration-200 ${isActive
-                  ? 'bg-primary/10 text-primary font-extrabold shadow-xs'
-                  : 'text-slate-600 hover:text-primary hover:bg-slate-50 font-bold'
-                  }`}
-              >
-                {item.label}
-              </a>
+              <Link href={item.href} legacyBehavior key={item.id}>
+                <a
+                  onClick={(e) => handleNavClick(item.id, item.href, e)}
+                  className={`px-4 py-2 rounded-lg transition-all duration-200 ${isActive
+                    ? 'bg-primary/10 text-primary font-extrabold shadow-xs'
+                    : 'text-slate-600 hover:text-primary hover:bg-slate-50 font-bold'
+                    }`}
+                >
+                  {item.label}
+                </a>
+              </Link>
             );
           })}
         </nav>
