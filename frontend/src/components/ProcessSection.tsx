@@ -4,6 +4,8 @@ import React from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { translations } from '@/translations';
 
+const basePath = process.env.NODE_ENV === 'production' ? '/Forklift-PTO' : '';
+
 export default function ProcessSection() {
   const { language } = useLanguage();
   const t = translations[language].process;
@@ -50,7 +52,7 @@ export default function ProcessSection() {
             {/* Middle Tall Card: RFID Authentication Image */}
             <div className="relative h-[440px] rounded-2xl overflow-hidden shadow-sm border border-slate-200/90 bg-slate-900 group">
               <img
-                src="/rfid_scan.png"
+                src={`${basePath}/rfid_scan.png`}
                 alt="Otentikasi RFID"
                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
