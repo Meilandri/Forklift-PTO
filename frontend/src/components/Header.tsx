@@ -17,7 +17,7 @@ export default function Header() {
     { id: 'home', label: t.home, href: '#' },
     { id: 'features', label: t.features, href: '#features' },
     { id: 'solutions', label: t.solutions, href: '#solutions' },
-    { id: 'about-us', label: t.aboutUs, href: '/about-us' },
+    { id: 'about-us', label: t.aboutUs, href: `${basePath}/about-us` },
   ];
 
   // Auto-detect active section on scroll
@@ -104,8 +104,8 @@ export default function Header() {
                 href={item.href}
                 onClick={(e) => handleNavClick(item.id, item.href, e)}
                 className={`px-4 py-2 rounded-lg transition-all duration-200 ${isActive
-                    ? 'bg-primary/10 text-primary font-extrabold shadow-xs'
-                    : 'text-slate-600 hover:text-primary hover:bg-slate-50 font-bold'
+                  ? 'bg-primary/10 text-primary font-extrabold shadow-xs'
+                  : 'text-slate-600 hover:text-primary hover:bg-slate-50 font-bold'
                   }`}
               >
                 {item.label}
@@ -121,8 +121,8 @@ export default function Header() {
             <button
               onClick={() => setLanguage('id')}
               className={`px-3 py-1.5 transition-all ${language === 'id'
-                  ? 'bg-primary text-white'
-                  : 'text-slate-500 hover:bg-slate-100'
+                ? 'bg-primary text-white'
+                : 'text-slate-500 hover:bg-slate-100'
                 }`}
             >
               ID
@@ -130,8 +130,8 @@ export default function Header() {
             <button
               onClick={() => setLanguage('en')}
               className={`px-3 py-1.5 transition-all ${language === 'en'
-                  ? 'bg-primary text-white'
-                  : 'text-slate-500 hover:bg-slate-100'
+                ? 'bg-primary text-white'
+                : 'text-slate-500 hover:bg-slate-100'
                 }`}
             >
               EN
