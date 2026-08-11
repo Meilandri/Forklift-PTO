@@ -4,8 +4,8 @@ import React from 'react';
 import Image from 'next/image';
 import { useLanguage } from '@/context/LanguageContext';
 import { translations } from '@/translations';
-import rfidScanImg from '@/public/rfid_scan.png';
-import digitalChecklistImg from '@/public/digital_checklist_tablet.png';
+import rfidScanImg from '../../public/rfid_scan.png';
+import digitalChecklistImg from '../../public/digital_checklist_tablet.png';
 
 export default function ProcessSection() {
   const { language } = useLanguage();

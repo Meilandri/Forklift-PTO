@@ -1,8 +1,12 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image'; // 1. Tambahkan import Image
 import { useLanguage } from '@/context/LanguageContext';
 import { translations } from '@/translations';
+
+// 2. Tambahkan variabel basePath untuk deployment GitHub Pages
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || (process.env.NODE_ENV === 'production' ? '/Forklift-PTO' : '');
 
 export default function Header() {
   const { language, setLanguage } = useLanguage();
@@ -76,9 +80,12 @@ export default function Header() {
           className="flex items-center gap-3 group"
         >
           <div className="h-10 w-10 overflow-hidden rounded-lg bg-white p-0.5 border border-slate-200 flex items-center justify-center shrink-0 shadow-sm">
-            <img
-              src="/logo.png"
+            {/* 3. Ubah tag img menjadi Image dengan penambahan basePath */}
+            <Image
+              src={`${basePath}/logo.png`}
               alt="Smart Interlock Shield Logo"
+              width={48}
+              height={48}
               className="h-12 w-12 object-cover object-top transition-transform group-hover:scale-105"
             />
           </div>
@@ -96,11 +103,10 @@ export default function Header() {
                 key={item.id}
                 href={item.href}
                 onClick={(e) => handleNavClick(item.id, item.href, e)}
-                className={`px-4 py-2 rounded-lg transition-all duration-200 ${
-                  isActive
+                className={`px-4 py-2 rounded-lg transition-all duration-200 ${isActive
                     ? 'bg-primary/10 text-primary font-extrabold shadow-xs'
                     : 'text-slate-600 hover:text-primary hover:bg-slate-50 font-bold'
-                }`}
+                  }`}
               >
                 {item.label}
               </a>
@@ -114,21 +120,19 @@ export default function Header() {
           <div className="flex items-center gap-1 rounded-lg border border-slate-200 overflow-hidden text-xs font-bold">
             <button
               onClick={() => setLanguage('id')}
-              className={`px-3 py-1.5 transition-all ${
-                language === 'id'
+              className={`px-3 py-1.5 transition-all ${language === 'id'
                   ? 'bg-primary text-white'
                   : 'text-slate-500 hover:bg-slate-100'
-              }`}
+                }`}
             >
               ID
             </button>
             <button
               onClick={() => setLanguage('en')}
-              className={`px-3 py-1.5 transition-all ${
-                language === 'en'
+              className={`px-3 py-1.5 transition-all ${language === 'en'
                   ? 'bg-primary text-white'
                   : 'text-slate-500 hover:bg-slate-100'
-              }`}
+                }`}
             >
               EN
             </button>

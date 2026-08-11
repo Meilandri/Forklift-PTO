@@ -1,11 +1,12 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image'; // 1. Tambahkan import Image Next.js
 import { useLanguage } from '@/context/LanguageContext';
 import { translations } from '@/translations';
 
-// Menentukan basePath dinamis agar asset gambar dikenali oleh GitHub Pages
-const basePath = process.env.NODE_ENV === 'production' ? '/Forklift-PTO' : '';
+// 2. Variabel basePath (bisa ditambahkan pengecekan NEXT_PUBLIC_BASE_PATH agar lebih kuat)
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || (process.env.NODE_ENV === 'production' ? '/Forklift-PTO' : '');
 
 export default function Hero() {
   const { language } = useLanguage();
@@ -61,10 +62,14 @@ export default function Hero() {
 
         {/* Right Column: Image */}
         <div className="hidden lg:block relative h-[480px] w-full max-w-[480px] mx-auto rounded-2xl overflow-hidden shadow-2xl">
-          <img
+          {/* 3. Ubah tag img menjadi komponen Image */}
+          <Image
             src={`${basePath}/heroimg.png`}
             alt="Dashboard mockup"
+            width={480}
+            height={480}
             className="w-full h-full object-cover"
+            priority={true} // Memprioritaskan gambar ini di-load pertama kali karena berada di Hero section
           />
         </div>
       </div>

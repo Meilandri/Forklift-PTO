@@ -1,8 +1,12 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image'; // 1. Tambahkan import Image
 import { useLanguage } from '@/context/LanguageContext';
 import { translations } from '@/translations';
+
+// 2. Tambahkan variabel basePath untuk deployment GitHub Pages
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || (process.env.NODE_ENV === 'production' ? '/Forklift-PTO' : '');
 
 export default function Footer() {
   const { language } = useLanguage();
@@ -17,9 +21,12 @@ export default function Footer() {
           <div className="space-y-4 md:col-span-1">
             <div className="flex items-center gap-3">
               <div className="h-10 w-10 overflow-hidden rounded-lg bg-white p-0.5 flex items-center justify-center shrink-0 shadow-sm">
-                <img
-                  src="/logo.png"
+                {/* 3. Ubah tag img menjadi Image dengan penambahan basePath */}
+                <Image
+                  src={`${basePath}/logo.png`}
                   alt="Smart Interlock Logo"
+                  width={48}
+                  height={48}
                   className="h-12 w-12 object-cover object-top"
                 />
               </div>

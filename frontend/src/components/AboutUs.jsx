@@ -1,7 +1,12 @@
 'use client';
 
+import React from 'react';
+import Image from 'next/image'; // 1. Import komponen Image Next.js
 import { useLanguage } from '@/context/LanguageContext';
 import { translations } from '@/translations';
+
+// 2. Deklarasi basePath
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || (process.env.NODE_ENV === 'production' ? '/Forklift-PTO' : '');
 
 export default function AboutUs() {
     const { language } = useLanguage();
@@ -13,8 +18,9 @@ export default function AboutUs() {
 
                 {/* Back to Home Button */}
                 <div>
+                    {/* 3. Perbaiki href menuju basePath agar tidak tersesat ke root domain */}
                     <a
-                        href="/"
+                        href={basePath ? basePath : '/'}
                         className="inline-flex items-center gap-2 text-sm font-bold text-slate-600 hover:text-primary transition-colors group"
                     >
                         <span className="material-symbols-outlined text-[20px] group-hover:-translate-x-1 transition-transform">
@@ -38,7 +44,14 @@ export default function AboutUs() {
                 {/* Sejarah Inovasi (Image 1:2) */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                     <div className="order-2 lg:order-1 relative rounded-3xl overflow-hidden shadow-2xl bg-slate-100 aspect-[1/2] lg:h-[800px] border border-slate-200">
-                        <img src="sejarah.png" alt={t.historyTitle} className="w-full h-full object-cover" />
+                        {/* 4. Gunakan <Image> untuk sejarah.png (Ukuran diset 1:2 sesuai aspect ratio) */}
+                        <Image
+                            src={`${basePath}/sejarah.png`}
+                            alt={t.historyTitle}
+                            width={600}
+                            height={1200}
+                            className="w-full h-full object-cover"
+                        />
                         <div className="absolute inset-0 border-4 border-primary/20 rounded-3xl pointer-events-none"></div>
                     </div>
 
@@ -92,24 +105,32 @@ export default function AboutUs() {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-                        {t.devs.map((dev) => (
-                            <div key={dev.name} className="group space-y-6">
-                                <div className="aspect-square rounded-3xl overflow-hidden bg-slate-100 relative shadow-xl border border-slate-200 group-hover:border-primary/50 transition-colors">
-                                    <img
-                                        src={dev.img}
-                                        alt={dev.name}
-                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                                    />
+                        {t.devs.map((dev) => {
+                            // 5. Menyiasati string gambar dari translations.ts agar aman dengan/tanpa '/' di depannya
+                            const imgSrc = dev.img.startsWith('/') ? dev.img : `/${dev.img}`;
+
+                            return (
+                                <div key={dev.name} className="group space-y-6">
+                                    <div className="aspect-square rounded-3xl overflow-hidden bg-slate-100 relative shadow-xl border border-slate-200 group-hover:border-primary/50 transition-colors">
+                                        {/* 6. Gunakan <Image> untuk foto developer (Ukuran 1:1) */}
+                                        <Image
+                                            src={`${basePath}${imgSrc}`}
+                                            alt={dev.name}
+                                            width={500}
+                                            height={500}
+                                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                        />
+                                    </div>
+                                    <div className="text-center space-y-2">
+                                        <h4 className="text-xl font-bold text-slate-900 group-hover:text-primary transition-colors">
+                                            {dev.name}
+                                        </h4>
+                                        <p className="text-sm font-semibold text-primary uppercase tracking-wider">{dev.role}</p>
+                                        <p className="text-slate-600 text-sm leading-relaxed px-4 pt-2">{dev.bio}</p>
+                                    </div>
                                 </div>
-                                <div className="text-center space-y-2">
-                                    <h4 className="text-xl font-bold text-slate-900 group-hover:text-primary transition-colors">
-                                        {dev.name}
-                                    </h4>
-                                    <p className="text-sm font-semibold text-primary uppercase tracking-wider">{dev.role}</p>
-                                    <p className="text-slate-600 text-sm leading-relaxed px-4 pt-2">{dev.bio}</p>
-                                </div>
-                            </div>
-                        ))}
+                            );
+                        })}
                     </div>
                 </div>
 
