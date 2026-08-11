@@ -1,12 +1,12 @@
 import type { NextConfig } from "next";
 
-const isGithubActions = process.env.GITHUB_ACTIONS || false;
+// GitHub Actions menyediakan variabel environment GITHUB_ACTIONS dengan nilai string "true"
+const isGithubActions = process.env.GITHUB_ACTIONS === "true";
 
 const nextConfig: NextConfig = {
   output: "export",
-  // Menambahkan prefix subfolder khusus untuk deployment GitHub Pages
+  // Menambahkan prefix subfolder khusus saat di-build oleh GitHub Actions
   basePath: isGithubActions ? "/Forklift-PTO" : "",
-  assetPrefix: isGithubActions ? "/Forklift-PTO/" : "",
   images: {
     unoptimized: true,
   },
