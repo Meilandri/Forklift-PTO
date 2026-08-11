@@ -1,10 +1,11 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { useLanguage } from '@/context/LanguageContext';
 import { translations } from '@/translations';
-
-const basePath = process.env.NODE_ENV === 'production' ? '/Forklift-PTO' : '';
+import rfidScanImg from '@/public/rfid_scan.png';
+import digitalChecklistImg from '@/public/digital_checklist_tablet.png';
 
 export default function ProcessSection() {
   const { language } = useLanguage();
@@ -51,8 +52,8 @@ export default function ProcessSection() {
           <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
             {/* Middle Tall Card: RFID Authentication Image */}
             <div className="relative h-[440px] rounded-2xl overflow-hidden shadow-sm border border-slate-200/90 bg-slate-900 group">
-              <img
-                src={`${basePath}/rfid_scan.png`}
+              <Image
+                src={rfidScanImg}
                 alt="Otentikasi RFID"
                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
@@ -80,8 +81,8 @@ export default function ProcessSection() {
 
               {/* Bottom Digital Checklist Card */}
               <div className="relative h-[214px] rounded-2xl overflow-hidden shadow-sm border border-slate-200/90 bg-slate-900 group">
-                <img
-                  src="/digital_checklist_tablet.png"
+                <Image
+                  src={digitalChecklistImg}
                   alt="Digital Checklist"
                   className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />
